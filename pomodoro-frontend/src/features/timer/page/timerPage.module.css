@@ -14,9 +14,18 @@
 }
 
 .startButton{
-    width: 150px;
+    width: 200px;
     padding: 15px;
     font-size: 25px;
+}
+
+.timerTypesTitle {
+    font-size: 12px;
+    margin-top: 50px;
+}
+
+.timeButtonContainer button{
+    padding: 5px 10px;
 }
 
 .timeButtonContainer button:not(:disabled):hover, .startButton:not(:disabled):hover{
