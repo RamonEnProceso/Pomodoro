@@ -1,12 +1,13 @@
 import { toDisplayTwo } from "../../logic/toDisplayTwo";
 import type { Timer } from "../../models/timer";
+import styles from "./displayTimer.module.css"
 
 const DisplayTimer = ({timer}:{timer:Timer}) =>{
-    return <div>
-        <p>
-            <span>{toDisplayTwo(timer.minutes)}</span>
+    return <div className={styles.timerContainer}>
+        <p >
+            <span className={styles.minutes}>{toDisplayTwo(timer.minutes)}</span>
             <span>:</span>
-            <span>{toDisplayTwo(timer.seconds)}</span>
+            <span className={styles.seconds}>{toDisplayTwo(timer.seconds)}</span>
         </p>
     </div>
 }
