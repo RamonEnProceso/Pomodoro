@@ -3,6 +3,7 @@ import DisplayTimer from "../displayTimer";
 import { readSecondsTimer } from "../../../logic/readSecondsTimer";
 import { calcFinishTime, calcTimeMs } from "../../../logic/calcTime";
 import { minToMs } from "../../../logic/minToMilisec";
+import styles from "./timerPage.module.css"
 
 var WORK_MINUTES = 1;
 
@@ -40,14 +41,15 @@ const TimerPage = () => {
     };
 
     return (
-        <div>
-            <DisplayTimer timer={timer}/> <div>
-                <button onClick={() => setTime(40)} disabled={isRunning}>40min</button>
-                <button onClick={() => setTime(25)} disabled={isRunning}>25min</button>
-                <button onClick={() => setTime(10)} disabled={isRunning}>10min</button>
+        <section className={styles.timerSection}>
+            <DisplayTimer timer={timer}/>
+            <div className={styles.timeButtonContainer}>
+                <button className={styles.timeButton} onClick={() => setTime(40)} disabled={isRunning}>40min</button>
+                <button className={styles.timeButton} onClick={() => setTime(25)} disabled={isRunning}>25min</button>
+                <button className={styles.timeButton} onClick={() => setTime(10)} disabled={isRunning}>10min</button>
             </div>
-            <button onClick={start} disabled={isRunning}>Iniciar</button>
-        </div>
+            <button className={styles.startButton} onClick={start} disabled={isRunning}>Iniciar</button>
+        </section>
     );
 };
 
