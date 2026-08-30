@@ -1,0 +1,24 @@
+.timerSection{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.timeButtonContainer{
+    margin: 15px 0 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.startButton{
+    width: 150px;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.timeButtonContainer button:active, .startButton:active{
+    cursor: pointer;
+}
