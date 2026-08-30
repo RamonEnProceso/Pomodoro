@@ -13,10 +13,28 @@
     gap: 10px;
 }
 
-.startButton{
+.startButton, .buttonContainer, .pauseButtonsContainer{
     width: 200px;
+}
+
+.startButton, .pauseButton, .stopButton{
     padding: 15px;
     font-size: 25px;
+}
+
+.pauseButtonsContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    overflow:hidden;
+}
+
+
+.stopButton{
+    grid-column-start: 3;
+}
+.pauseButton{
+    grid-column: span 2 / span 2;
 }
 
 .timerTypesTitle {
@@ -29,16 +47,21 @@
 
 .timerTypesContainer{
     opacity: 1;
+    transition: opacity 0.25s;
 }
 
-.timerTypesContainer.running{
+.timerTypesContainer.hide{
     opacity: 0;
+}
+
+.startButton.hide, .pauseButtonsContainer.hide{
+    display: none;
 }
 
 .timeButtonContainer button{
     padding: 5px 10px;
 }
 
-.timeButtonContainer button:not(:disabled):hover, .startButton:not(:disabled):hover{
+.timeButtonContainer button:not(:disabled):hover, .startButton:not(:disabled):hover, .pauseButton:not(:disabled):hover, .stopButton:not(:disabled):hover{
     cursor: pointer;
 }
