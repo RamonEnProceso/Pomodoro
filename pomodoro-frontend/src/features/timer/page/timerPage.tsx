@@ -43,10 +43,13 @@ const TimerPage = () => {
     return (
         <section className={styles.timerSection}>
             <DisplayTimer timer={timer}/>
-            <div className={styles.timeButtonContainer}>
-                <button className={styles.timeButton} onClick={() => setTime(40)} disabled={isRunning}>40min</button>
-                <button className={styles.timeButton} onClick={() => setTime(25)} disabled={isRunning}>25min</button>
-                <button className={styles.timeButton} onClick={() => setTime(10)} disabled={isRunning}>10min</button>
+            <div className={styles.timerTypesContainer}>
+                <p className={styles.timerTypesTitle}>Tiempo De Sesión:</p>
+                <div className={styles.timeButtonContainer}>
+                    <button className={styles.timeButton} onClick={() => setTime(40)} disabled={isRunning}>40min</button>
+                    <button className={styles.timeButton} onClick={() => setTime(25)} disabled={isRunning}>25min</button>
+                    <button className={styles.timeButton} onClick={() => setTime(10)} disabled={isRunning}>10min</button>
+                </div>
             </div>
             <button className={styles.startButton} onClick={start} disabled={isRunning}>Iniciar</button>
         </section>
