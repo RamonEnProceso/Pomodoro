@@ -79,7 +79,7 @@ const TimerPage = () => {
             <div className={styles.buttonContainer}>
                 <button className={`${styles.startButton}  ${hideButtons(timerState, true)}`} onClick={start} disabled={isRunning}>Iniciar</button>
                 <div className={`${styles.pauseButtonsContainer} ${hideButtons(timerState, false)}`}>
-                    <button className={styles.pauseButton} disabled={!isRunning}>Resumir</button>
+                    <button className={styles.pauseButton} disabled={!isRunning}>Pausar</button>
                     <button className={styles.stopButton} disabled={!isRunning} onClick={stopTimer}>X</button>
                 </div>
             </div>
