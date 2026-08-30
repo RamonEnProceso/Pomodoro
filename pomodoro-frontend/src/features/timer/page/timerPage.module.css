@@ -19,6 +19,6 @@
     font-size: 25px;
 }
 
-.timeButtonContainer button:active, .startButton:active{
+.timeButtonContainer button:not(:disabled):hover, .startButton:not(:disabled):hover{
     cursor: pointer;
 }
