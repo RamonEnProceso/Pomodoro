@@ -1,0 +1,29 @@
+.timerTypesContainer{
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.timerTypesContainer.hide{
+    opacity: 0;
+}
+
+.timerTypesTitle {
+    font-size: 12px;
+    margin-top: 50px;
+    display: block;
+    text-align: center;
+}
+
+.timeButtonContainer{
+    margin: 15px 0 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.timeButtonContainer button{
+    padding: 5px 10px;
+}
+
+.timeButtonContainer button:not(:disabled):hover{
+    cursor: pointer;
+}
