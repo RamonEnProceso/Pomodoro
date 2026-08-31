@@ -3,7 +3,7 @@ import DisplayTimer from "../displayTimer";
 import TimerTypes from "../timerTypes";
 import PauseButtons from "../pauseButtons";
 import { readSecondsTimer } from "../../../logic/readSecondsTimer";
-import { calcFinishTime, calcTimeMs, calcNewFinishTime} from "../../../logic/calcTime";
+import { calcFinishTime, calcTimeMs } from "../../../logic/calcTime";
 import { minToMs } from "../../../logic/minToMilisec";
 import type { TimerState } from "../../../models/timerState";
 import styles from "./timerPage.module.css"
@@ -37,7 +37,7 @@ const TimerPage = () => {
     }, [isRunning, finishTime]);
 
     const start = () => {
-        setFinishTime(calcFinishTime(WORK_MINUTES));
+        setFinishTime(calcFinishTime(minToMs(WORK_MINUTES)));
         setIsRunning(true);
         setTimerState("running");
     };
@@ -62,7 +62,7 @@ const TimerPage = () => {
 
     const resumeTimer = () => {
         setTimer(readSecondsTimer(PENDING_TIME));
-        setFinishTime(calcNewFinishTime(PENDING_TIME));
+        setFinishTime(calcFinishTime(PENDING_TIME));
         setIsRunning(true);
         setTimerState("running");
     };
