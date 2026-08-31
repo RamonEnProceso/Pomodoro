@@ -7,61 +7,20 @@
     flex-flow: column;
 }
 
-.timeButtonContainer{
-    margin: 15px 0 30px;
-    display: flex;
-    gap: 10px;
-}
-
-.startButton, .buttonContainer, .pauseButtonsContainer{
+.buttonContainer{
     width: 200px;
 }
 
-.startButton, .pauseButton, .stopButton{
+.startButton{
+    width: 200px;
     padding: 15px;
     font-size: 25px;
 }
 
-.pauseButtonsContainer{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    overflow:hidden;
-}
-
-
-.stopButton{
-    grid-column-start: 3;
-}
-.pauseButton{
-    grid-column: span 2 / span 2;
-}
-
-.timerTypesTitle {
-    font-size: 12px;
-    margin-top: 50px;
-    display: block;
-    text-align: center;
-}
-
-
-.timerTypesContainer{
-    opacity: 1;
-    transition: opacity 0.25s;
-}
-
-.timerTypesContainer.hide{
-    opacity: 0;
-}
-
-.startButton.hide, .pauseButtonsContainer.hide{
+.startButton.hide{
     display: none;
 }
 
-.timeButtonContainer button{
-    padding: 5px 10px;
-}
-
-.timeButtonContainer button:not(:disabled):hover, .startButton:not(:disabled):hover, .pauseButton:not(:disabled):hover, .stopButton:not(:disabled):hover{
+.startButton:not(:disabled):hover{
     cursor: pointer;
 }
