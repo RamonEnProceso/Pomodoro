@@ -1,0 +1,28 @@
+.pauseButtonsContainer{
+    width: 200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    overflow: hidden;
+}
+
+.pauseButtonsContainer.hide{
+    display: none;
+}
+
+.stopButton{
+    grid-column-start: 3;
+}
+
+.pauseButton{
+    grid-column: span 2 / span 2;
+}
+
+.pauseButton, .stopButton{
+    padding: 15px;
+    font-size: 25px;
+}
+
+.pauseButton:not(:disabled):hover, .stopButton:not(:disabled):hover{
+    cursor: pointer;
+}
