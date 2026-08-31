@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import DisplayTimer from "../displayTimer";
+import TimerTypes from "../timerTypes";
+import PauseButtons from "../pauseButtons";
 import { readSecondsTimer } from "../../../logic/readSecondsTimer";
-import { calcFinishTime, calcTimeMs } from "../../../logic/calcTime";
+import { calcFinishTime, calcTimeMs, calcNewFinishTime} from "../../../logic/calcTime";
 import { minToMs } from "../../../logic/minToMilisec";
 import type { TimerState } from "../../../models/timerState";
 import styles from "./timerPage.module.css"
 
-var WORK_MINUTES = 1;
+var WORK_MINUTES = 10;
+var PENDING_TIME = 10;
 
 const TimerPage = () => {
     const [finishTime, setFinishTime] = useState<number | null>(null);
@@ -44,44 +47,35 @@ const TimerPage = () => {
         setTimer(readSecondsTimer(minToMs(e)));
     };
 
-    const hideButtons = (tS : TimerState, initial:boolean) => {
-        if(initial){
-            if(tS === "running" || tS === "pause"){
-            return styles.hide;
-            }
-            return "";
-        }else{
-            if(tS === "running" || tS === "pause"){
-            return "";
-            }
-            return styles.hide;
-        }
-    }
-
     const stopTimer = () =>{
-        setTimer(readSecondsTimer(minToMs(10)));
+        setTimer(readSecondsTimer(minToMs(WORK_MINUTES)));
         setIsRunning(false);
         setTimerState("stop");
-        return;
     }
+
+    const pauseTimer = () => {
+        const pendingTime = calcTimeMs(finishTime??0);
+        PENDING_TIME = pendingTime;
+        setIsRunning(false);
+        setTimerState("pause");
+    };
+
+    const resumeTimer = () => {
+        setTimer(readSecondsTimer(PENDING_TIME));
+        setFinishTime(calcNewFinishTime(PENDING_TIME));
+        setIsRunning(true);
+        setTimerState("running");
+    };
+
+    const startHidden = timerState === "running" || timerState === "pause";
 
     return (
         <section className={styles.timerSection}>
             <DisplayTimer timer={timer}/>
-            <div className={`${styles.timerTypesContainer} ${hideButtons(timerState, true)}`}>
-                <p className={styles.timerTypesTitle}>Tiempo De Sesión:</p>
-                <div className={styles.timeButtonContainer}>
-                    <button className={styles.timeButton} onClick={() => setTime(40)} disabled={isRunning}>40min</button>
-                    <button className={styles.timeButton} onClick={() => setTime(25)} disabled={isRunning}>25min</button>
-                    <button className={styles.timeButton} onClick={() => setTime(10)} disabled={isRunning}>10min</button>
-                </div>
-            </div>
+            <TimerTypes timerState={timerState} isRunning={isRunning} onSetTime={setTime}/>
             <div className={styles.buttonContainer}>
-                <button className={`${styles.startButton}  ${hideButtons(timerState, true)}`} onClick={start} disabled={isRunning}>Iniciar</button>
-                <div className={`${styles.pauseButtonsContainer} ${hideButtons(timerState, false)}`}>
-                    <button className={styles.pauseButton} disabled={!isRunning}>Pausar</button>
-                    <button className={styles.stopButton} disabled={!isRunning} onClick={stopTimer}>X</button>
-                </div>
+                <button className={`${styles.startButton} ${startHidden ? styles.hide : ""}`} onClick={start} disabled={isRunning}>Iniciar</button>
+                <PauseButtons timerState={timerState} onStop={stopTimer} onPause={pauseTimer} onResume={resumeTimer}/>
             </div>
         </section>
     );
